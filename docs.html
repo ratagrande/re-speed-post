@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="ReSpeedPost installation, processing, TikTok connection, publishing, and CLI documentation."><title>Documentation — ReSpeedPost</title><link rel="icon" type="image/svg+xml" href="assets/respeedpost-icon.svg"><link rel="stylesheet" href="styles.css"></head>
+<body><header class="site-header"><a class="brand" href="index.html"><img src="assets/respeedpost-icon.svg" alt="ReSpeedPost icon" width="44" height="44"><span>ReSpeedPost</span></a><nav><a href="index.html">Product</a><a aria-current="page" href="docs.html">Documentation</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav></header>
+<main class="container"><header class="page-hero"><p class="eyebrow">Documentation</p><h1>Install, process, connect, publish.</h1><p class="lede">Reference documentation for the ReSpeedPost desktop application and command-line interface.</p></header><article class="prose">
+<h2>System requirements</h2><ul><li>Windows 10 or newer.</li><li>Python 3.11 or newer for source installations.</li><li>FFmpeg and FFprobe available on <code>PATH</code>.</li><li>A TikTok account and network access for account connection and publishing.</li></ul>
+<h2>Install from source</h2><pre><code>git clone https://github.com/ratagrande/re-speed-post-app
+cd re-speed-post-app
+py -m venv .venv
+.\.venv\Scripts\python -m pip install -e ".[dev]"
+respeedpost-gui</code></pre>
+<h2>Local processing</h2><p>Select a video and choose a speed from 0.25× to 4.00×. Speeds other than 1.00× create a new H.264/AAC MP4 in the output directory. ReSpeedPost never overwrites the source.</p><div class="notice"><strong>1.00× passthrough:</strong> the original path and bytes are used directly. FFmpeg is not started and no output copy is created.</div>
+<h2>Connect a TikTok account</h2><ol><li>Open ReSpeedPost and select <strong>Connect TikTok</strong>.</li><li>Review TikTok's authorization screen in the browser.</li><li>Approve only the displayed scopes.</li><li>Return to ReSpeedPost and refresh the connected creator.</li></ol><p>The app requests <code>user.info.basic</code> to show the destination creator and <code>video.publish</code> to publish an explicitly confirmed post.</p>
+<h2>Publish from the desktop interface</h2><ol><li>Preview the selected video.</li><li>Choose speed and cover-frame time.</li><li>Refresh creator settings.</li><li>Edit the caption, visibility, comments, Duet, and Stitch choices.</li><li>Select <strong>Review and publish</strong>.</li><li>Verify the final creator, file, speed, visibility, and caption, then confirm.</li></ol>
+<h2>Command line</h2><h3>Process only</h3><pre><code>respeedpost process clip.mp4 --speed 1.25 --output output</code></pre><h3>Publish with unchanged media</h3><pre><code>respeedpost publish clip.mp4 --speed 1.00 \
+  --caption "Creator-approved caption" \
+  --privacy SELF_ONLY --confirm</code></pre><p>The CLI retrieves current creator choices before publishing. Without <code>--confirm</code>, it prints a complete summary and requires the user to type <code>YES</code>.</p>
+<h2>Files stored locally</h2><p>Configuration, TikTok tokens, and processed outputs are stored under <code>%APPDATA%\ReSpeedPost</code>. See the <a href="privacy.html">Privacy Policy</a> for retention and deletion instructions.</p>
+</article></main><footer class="site-footer"><div><strong>ReSpeedPost</strong><br>Documentation for version 0.1.</div><nav><a href="index.html">Product</a><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav></footer></body></html>
+

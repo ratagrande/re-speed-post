@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">ReSpeedPost icon</title>
+  <rect width="512" height="512" rx="112" fill="#111318"/>
+  <path d="M86 268a170 170 0 1 1 51 121" fill="none" stroke="#ff3d62" stroke-width="48" stroke-linecap="round"/>
+  <path d="m68 354 20-112 91 70z" fill="#ff3d62"/>
+  <path d="M230 154h62v91l78 47-31 53-109-66z" fill="#fff"/>
+</svg>
+

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ReSpeedPost adjusts creator-owned videos locally and publishes them to an authorized TikTok account with editable settings and explicit confirmation.">
+  <meta name="description" content="Use ReSpeedPost to preview video speed changes locally, then download the Windows app to prepare and publish videos to an authorized TikTok account.">
   <title>ReSpeedPost</title>
   <link rel="icon" type="image/svg+xml" href="assets/respeedpost-icon.svg">
   <link rel="stylesheet" href="styles.css">
@@ -11,52 +11,85 @@
 <body>
   <header class="site-header">
     <a class="brand" href="index.html"><img src="assets/respeedpost-icon.svg" alt="ReSpeedPost icon" width="44" height="44"><span>ReSpeedPost</span></a>
-    <nav aria-label="Main navigation"><a aria-current="page" href="index.html">Product</a><a href="docs.html">Documentation</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    <nav aria-label="Main navigation"><a aria-current="page" href="index.html">Video tool</a><a href="docs.html">Documentation</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
   </header>
+
   <main>
-    <div class="container hero">
-      <div>
-        <p class="eyebrow">Desktop video preparation and publishing</p>
-        <h1>Change the pace. Keep control.</h1>
-        <p class="lede">ReSpeedPost helps creators adjust a locally stored video's playback speed, preview the result, edit TikTok publishing choices, and post only after explicit confirmation.</p>
-        <div class="actions"><a class="button" href="https://github.com/ratagrande/re-speed-post/releases/download/v0.1.1/ReSpeedPost-0.1.1-windows-x64.zip">Download for Windows</a><a class="button secondary" href="docs.html">Installation guide</a><a class="button secondary" href="https://github.com/ratagrande/re-speed-post/releases/tag/v0.1.1">Release notes</a></div>
-        <p class="microcopy">The Windows package includes <a href="https://ffmpeg.org/">FFmpeg</a> under GPLv3. Its <a href="https://github.com/ratagrande/re-speed-post/releases/download/v0.1.1/ffmpeg-bf1b838f2a-source.zip">corresponding source</a> is available with the release.</p>
+    <section class="tool-shell">
+      <div class="container tool-heading">
+        <div>
+          <p class="eyebrow">Free browser preview</p>
+          <h1>Check a video at a different speed.</h1>
+          <p class="lede">Choose a video from your device, adjust its playback speed, and check the new timing. The file remains in your browser and is never uploaded.</p>
+        </div>
+        <div class="release-badge" aria-label="Current Windows release"><span>Windows release</span><strong>v0.1.1</strong><small>Published August 2026</small></div>
       </div>
-      <figure class="hero-visual">
-        <img src="assets/respeedpost-ui.png" alt="ReSpeedPost desktop interface with video preview and TikTok publishing settings">
-        <p>The desktop interface keeps preview, speed, description, visibility, interaction controls, cover frame, and confirmation in one workflow.</p>
-      </figure>
-    </div>
+
+      <div class="container video-workspace">
+        <div class="preview-panel">
+          <div id="empty-preview" class="empty-preview"><img src="assets/respeedpost-icon.svg" alt="" width="72" height="72"><h2>Select a video to begin</h2><p>MP4, MOV, or WebM. Your file stays on this device.</p></div>
+          <video id="video-preview" controls playsinline hidden></video>
+        </div>
+        <aside class="tool-controls" aria-label="Video speed controls">
+          <label class="file-button" for="video-file">Choose video</label>
+          <input id="video-file" type="file" accept="video/mp4,video/quicktime,video/webm" hidden>
+          <div class="control-group">
+            <div class="control-label"><label for="speed-control">Playback speed</label><output id="speed-value" for="speed-control">1.00×</output></div>
+            <input id="speed-control" type="range" min="0.25" max="4" step="0.05" value="1" disabled>
+            <div class="range-labels"><span>0.25×</span><span>1×</span><span>2×</span><span>4×</span></div>
+          </div>
+          <dl class="video-facts">
+            <div><dt>File</dt><dd id="file-name">No video selected</dd></div>
+            <div><dt>Original duration</dt><dd id="original-duration">—</dd></div>
+            <div><dt>Adjusted duration</dt><dd id="adjusted-duration">—</dd></div>
+            <div><dt>Resolution</dt><dd id="video-resolution">—</dd></div>
+            <div><dt>File size</dt><dd id="file-size">—</dd></div>
+          </dl>
+          <button id="reset-tool" class="button secondary full-width" type="button" disabled>Reset preview</button>
+          <p id="tool-status" class="tool-status" aria-live="polite">Choose a local video to activate the preview.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section download-section">
+      <div class="container download-layout">
+        <div>
+          <p class="eyebrow">Desktop application</p>
+          <h2>Prepare and publish from Windows.</h2>
+          <p>ReSpeedPost for Windows processes video locally, connects through TikTok Login Kit, displays the authorized creator and current publishing choices, and sends a post only after final confirmation.</p>
+          <div class="actions"><a class="button" href="https://github.com/ratagrande/re-speed-post/releases/download/v0.1.1/ReSpeedPost-0.1.1-windows-x64.zip">Download for Windows</a><a class="button secondary" href="docs.html">Installation guide</a><a class="button secondary" href="https://github.com/ratagrande/re-speed-post/releases/tag/v0.1.1">Release notes</a></div>
+          <p class="microcopy">The self-contained ZIP includes FFmpeg 9.0.1 and FFprobe. No Python or separate multimedia installation is required.</p>
+          <p class="microcopy">FFmpeg is included under GPLv3. Its <a href="https://github.com/ratagrande/re-speed-post/releases/download/v0.1.1/ffmpeg-bf1b838f2a-source.zip">corresponding source</a>, license, and build information are available with the release.</p>
+        </div>
+        <figure class="app-shot"><img src="assets/respeedpost-ui.png" alt="ReSpeedPost desktop interface showing video preview, speed, description, visibility, interaction, cover-frame, and publishing controls"><figcaption>Version 0.1.1 for Windows 10 and newer.</figcaption></figure>
+      </div>
+    </section>
 
     <section class="section alt" id="features">
       <div class="container">
-        <div class="section-intro"><p class="eyebrow">Product capabilities</p><h2>A focused workflow for creator-owned media</h2><p>Video processing stays on the user's computer. ReSpeedPost sends a file to TikTok only after the connected creator, metadata, and platform-supported choices are visible.</p></div>
+        <div class="section-intro"><p class="eyebrow">Complete workflow</p><h2>Every publishing decision remains visible.</h2><p>The desktop app separates selecting, processing, reviewing, and publishing so choosing a file never starts an upload.</p></div>
         <div class="grid">
-          <article class="card"><span class="number">1</span><h3>Local speed adjustment</h3><p>Choose a speed from 0.25× to 4.00×. FFmpeg creates an H.264/AAC MP4 locally while preserving audio pitch timing.</p></article>
-          <article class="card"><span class="number">2</span><h3>Flexible speed control</h3><p>Fine-tune playback speed in 0.05× increments to suit the timing and format of each video.</p></article>
-          <article class="card"><span class="number">3</span><h3>Preview before transfer</h3><p>Review the selected local video before publishing. The app never begins a TikTok upload merely because a file was selected.</p></article>
-          <article class="card"><span class="number">4</span><h3>Current creator choices</h3><p>ReSpeedPost queries TikTok for the connected creator's nickname, privacy levels, interaction restrictions, and maximum duration.</p></article>
-          <article class="card"><span class="number">5</span><h3>Editable post details</h3><p>Edit the description and hashtags, visibility, comments, Duet, Stitch, and cover-frame timestamp before confirmation.</p></article>
-          <article class="card"><span class="number">6</span><h3>UI and command line</h3><p>The desktop interface and CLI share one processing and publishing service, making behavior consistent for interactive and scripted workflows.</p></article>
+          <article class="card"><span class="number">1</span><h3>Local video processing</h3><p>Choose a speed from 0.25× to 4.00×. Bundled FFmpeg prepares a compatible H.264/AAC file on the user's computer.</p></article>
+          <article class="card"><span class="number">2</span><h3>Preview and timing</h3><p>Review the selected video and cover-frame position before any transfer begins.</p></article>
+          <article class="card"><span class="number">3</span><h3>Authorized account</h3><p>Login Kit connects a TikTok account, and ReSpeedPost displays the returned creator identity.</p></article>
+          <article class="card"><span class="number">4</span><h3>Current creator choices</h3><p>The app retrieves TikTok-provided privacy levels, interaction restrictions, and maximum duration.</p></article>
+          <article class="card"><span class="number">5</span><h3>Editable post details</h3><p>Edit the description, hashtags, visibility, comments, Duet, Stitch, and cover frame.</p></article>
+          <article class="card"><span class="number">6</span><h3>Explicit confirmation</h3><p>A final summary identifies the creator, video, speed, visibility, and description before publishing.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="workflow">
-      <div class="container">
-        <div class="section-intro"><p class="eyebrow">How it works</p><h2>Five visible steps, no surprise upload</h2></div>
-        <div class="steps">
-          <article class="step"><div><h3>Select and preview</h3><p>Choose an MP4, MOV, or WebM file that you own or are authorized to publish, then preview it in the desktop app.</p></div></article>
-          <article class="step"><div><h3>Choose the speed</h3><p>Set the playback speed for the selected video and review the choice before processing.</p></div></article>
-          <article class="step"><div><h3>Connect TikTok</h3><p>Authorize a TikTok account through Login Kit. ReSpeedPost displays the creator identity returned by TikTok.</p></div></article>
-          <article class="step"><div><h3>Review platform settings</h3><p>Refresh the creator's available options, edit the description and interaction settings, and choose an allowed visibility.</p></div></article>
-          <article class="step"><div><h3>Confirm and publish</h3><p>A final summary identifies the creator, file, speed, visibility, and description. Only an affirmative confirmation starts processing and transfer.</p></div></article>
-        </div>
+    <section class="section">
+      <div class="container product-record">
+        <div><p class="eyebrow">Release record</p><h2>Current, documented, and supported.</h2></div>
+        <div class="record-grid"><article><strong>0.1.1</strong><span>Current Windows release</span></article><article><strong>11</strong><span>Automated application tests</span></article><article><strong>30 FPS</strong><span>Processed output frame rate</span></article><article><strong>0.25–4×</strong><span>Available speed range</span></article></div>
+        <div class="release-notes"><h3>What changed in 0.1.1</h3><ul><li>Bundled FFmpeg and FFprobe for a self-contained Windows download.</li><li>Automatic discovery of the bundled media tools.</li><li>Constant 30 FPS output for TikTok-compatible processed videos.</li><li>Updated licensing, source archive, installation, and integrity documentation.</li></ul></div>
       </div>
     </section>
 
-    <section class="section alt"><div class="container callout"><div><p class="eyebrow">Transparent by design</p><h2>Videos remain local until you publish.</h2><p>The OAuth client secret stays on a small hosted exchange service. Access tokens remain on the user's device, processing happens locally, and video bytes upload directly from that device to TikTok.</p></div><a class="button" href="privacy.html">Read the privacy policy</a></div></section>
+    <section class="section alt"><div class="container callout"><div><p class="eyebrow">Privacy by design</p><h2>Local until you choose to publish.</h2><p>The browser preview never uploads a file. In the desktop app, processing remains local and video bytes are transferred directly to TikTok only after the user reviews and confirms the post.</p></div><a class="button" href="privacy.html">Read the privacy policy</a></div></section>
   </main>
-  <footer class="site-footer"><div><strong>ReSpeedPost</strong><br>Desktop video preparation and TikTok publishing.</div><nav><a href="docs.html">Documentation</a><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav></footer>
+  <footer class="site-footer"><div><strong>ReSpeedPost</strong><br>Local video timing, preparation, and authorized publishing.</div><nav><a href="docs.html">Documentation</a><a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav></footer>
+  <script src="app.js" defer></script>
 </body>
 </html>
